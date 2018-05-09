@@ -38,6 +38,7 @@ Migration.prototype.run = function(options, callback) {
     network: options.network,
     network_id: options.network_id,
     provider: options.provider,
+    profile: options.profile,
     basePath: path.dirname(this.file)
   });
 
@@ -79,7 +80,7 @@ Migration.prototype.run = function(options, callback) {
       if (!fn || !fn.length || fn.length == 0) {
         return callback(new Error("Migration " + self.file + " invalid or does not take any parameters"));
       }
-      fn(deployer, options.network, accounts);
+      fn(deployer, options.network, accounts, options.profile);
       finish();
     });
   });
